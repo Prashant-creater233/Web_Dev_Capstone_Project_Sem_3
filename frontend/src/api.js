@@ -1,7 +1,7 @@
 // Small wrapper around the Fetch API:
 //  - adds the access token to every request
 //  - if the access token expired (401), it uses the refresh token once and retries
-const BASE = import.meta.env.VITE_API_URL || '/api';
+const BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
 
 export const tokens = {
   get access() { return localStorage.getItem('accessToken'); },
@@ -34,7 +34,14 @@ async function refreshTokens() {
 }
 
 export async function api(path, { method = 'GET', body } = {}, canRetry = true) {
-  const res = await fetch(BASE + path, {
+  const cleanPath = path.startsWith('/api')
+    ? path
+    : `/api${path.startsWith('/') ? path : `/${path}`}`;
+  const url = BASE.endsWith('/api')
+    ? `${BASE}${cleanPath.replace(/^\/api/, '')}`
+    : `${BASE}${cleanPath}`;
+
+  const res = await fetch(url, {
     method,
     headers: {
       'Content-Type': 'application/json',

@@ -1,10 +1,12 @@
 const config = require('../config');
 
 const allowedOrigins = [
+  'https://campuslibrary-db0e2vdeh-prashant-creator.vercel.app',
   'https://campuslibrary-tau.vercel.app',
   'https://campuslibrary-18l9e0t1m-prashant-creator.vercel.app',
-  'https://campuslibrary-lecx4bet0-prashant-creator.vercel.app'
-];
+  'https://campuslibrary-lecx4bet0-prashant-creator.vercel.app',
+  config.clientUrl
+].filter(Boolean);
 
 module.exports = (req, res, next) => {
   const origin = req.headers.origin;
