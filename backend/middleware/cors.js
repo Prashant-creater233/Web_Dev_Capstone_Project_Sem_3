@@ -2,13 +2,17 @@ const config = require('../config');
 
 const allowedOrigins = [
   'https://campuslibrary-tau.vercel.app',
-  'https://campuslibrary-18l9e0t1m-prashant-creator.vercel.app'
+  'https://campuslibrary-18l9e0t1m-prashant-creator.vercel.app',
+  'https://campuslibrary-lecx4bet0-prashant-creator.vercel.app'
 ];
 
 module.exports = (req, res, next) => {
   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
+  if (
+    allowedOrigins.includes(origin) ||
+    (origin && /^https:\/\/campuslibrary-[a-z0-9]+-prashant-creator\.vercel\.app$/.test(origin))
+  ) {
     res.header('Access-Control-Allow-Origin', origin);
   }
 
