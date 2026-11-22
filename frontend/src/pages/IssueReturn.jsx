@@ -19,7 +19,7 @@ export default function IssueReturn() {
   const [reload, setReload] = useState(0);
 
   useEffect(() => {
-    api('/books?limit=100&available=true&sort=title').then((d) => setBooks(d.books)).catch(() => {});
+    api('/api/books?limit=100&available=true&sort=title').then((d) => setBooks(d.books)).catch(() => {});
   }, [reload]);
 
   useEffect(() => {
