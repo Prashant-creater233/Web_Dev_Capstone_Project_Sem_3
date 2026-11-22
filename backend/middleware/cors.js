@@ -1,16 +1,23 @@
 const config = require('../config');
 
-module.exports = (req, res, next) => {
-  const allowedOrigin = config.clientUrl;
+const allowedOrigins = [
+  'https://campuslibrary-tau.vercel.app',
+  'https://campuslibrary-18l9e0t1m-prashant-creator.vercel.app'
+];
 
-  res.header('Access-Control-Allow-Origin', allowedOrigin);
-  res.header('Access-Control-Allow-Credentials', 'true');
+module.exports = (req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
+  res.header('Vary', 'Origin');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-  res.header('Vary', 'Origin');
 
   if (req.method === 'OPTIONS') {
-    return res.status(204).end();
+    return res.sendStatus(204);
   }
 
   next();
