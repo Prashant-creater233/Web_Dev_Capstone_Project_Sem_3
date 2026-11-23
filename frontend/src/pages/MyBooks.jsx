@@ -21,7 +21,7 @@ export default function MyBooks() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    api('/issues/my').then(setData).catch((e) => setError(e.message));
+    api('/api/issues/my').then(setData).catch((e) => setError(e.message));
   }, []);
 
   if (error) return <p className="alert bad">{error}</p>;

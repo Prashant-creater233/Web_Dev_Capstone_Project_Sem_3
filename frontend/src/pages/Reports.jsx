@@ -12,7 +12,11 @@ export default function Reports() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    Promise.all([api('/reports/summary'), api('/reports/most-borrowed?limit=5'), api('/reports/overdue')])
+   Promise.all([
+  api('/api/reports/summary'),
+  api('/api/reports/most-borrowed?limit=5'),
+  api('/api/reports/overdue')
+])
       .then(([s, p, o]) => { setSummary(s); setPopular(p.data); setOverdue(o.data); })
       .catch((e) => setError(e.message));
   }, []);
