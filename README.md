@@ -1,5 +1,10 @@
 # CampusLibrary - Library Management System (MERN)
 
+for login
+Admin Email = prashantkanwal8@gmail.com
+Admin Password = Admin@123
+
+
 A library system where **librarians manage books**, **students borrow and return them**, and **admins manage users**.
 Stack: Express, Mongoose (MongoDB), dotenv, bcryptjs, jsonwebtoken (backend); React, react-router-dom, Fetch API, Context API (frontend).
 
